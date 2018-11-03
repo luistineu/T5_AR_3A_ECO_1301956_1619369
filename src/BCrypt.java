@@ -1,8 +1,7 @@
 
 public class BCrypt extends java.lang.Object {
 	
-	static
-	String pwhash;
+	static String pwhash;
 	static String salt;
 	
 	Usuario user = new Usuario();
@@ -17,6 +16,6 @@ public class BCrypt extends java.lang.Object {
 		return salt;	
 	}
 	
-	String pw_hash = BCrypt.hashpw(user.getSenha(), BCrypt.gensalt(0, null)); 
+	String senha_hash = BCrypt.hashpw(pwhash, BCrypt.gensalt(0, null)); 
 
 }
