@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 import dal.UsuarioDAO;
+import model.ConnectionFactory;
 import model.Usuario;
 
 public class Main {
