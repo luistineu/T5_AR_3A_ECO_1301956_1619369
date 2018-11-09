@@ -1,6 +1,7 @@
 package view;
 
 import java.util.Date;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,7 +13,7 @@ import model.Usuario;
 
 public class Main {
 
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args) throws ParseException, SQLException {
 		String op = "";
 		Usuario u = new Usuario();
 		Scanner sc = new Scanner(System.in);
@@ -33,10 +34,10 @@ public class Main {
 					u.setNome(sc.nextLine());
 					System.out.println("Sobrenome:");
 					u.setSobrenome(sc.nextLine());
-					System.out.println("Data de Nascimento:");
+					/*System.out.println("Data de Nascimento:");
 					SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 					java.sql.Date data = new java.sql.Date(format.parse(sc.nextLine()).getTime());
-					u.setNascimento(data);
+					u.setNascimento(data);*/
 					System.out.println("Sexo:");
 					u.setSexo(sc.nextLine());
 					System.out.println("E-mail:");
@@ -44,7 +45,7 @@ public class Main {
 					System.out.println("Login:");
 					String login = sc.nextLine();
 					while(u.getLogin() == null) {
-						if(UsuarioDAO.ConsultaLogin(login)) {
+						if(!UsuarioDAO.ConsultaLogin(login)) {
 							u.setLogin(login);
 						} else {
 							System.out.println("Esse login já existe!");
@@ -60,6 +61,15 @@ public class Main {
 					}
 					else {
 						System.out.println("Não foi possível cadastrar o usuário!");
+					}
+					
+					break;
+					
+				case "2":
+					System.out.println("-- LOGIN --");
+					System.out.println("Login:");
+					if(UsuarioDAO.ConsultaLogin(sc.nextLine())) {
+						System.out.println("Senha:");
 					}
 					
 					break;

@@ -7,7 +7,6 @@ public class Usuario {
 	private String nome;
 	private String sobrenome;
 	private String sexo;
-	private Date nascimento;
 	private String email;
 	
 	private String login;
@@ -36,12 +35,6 @@ public class Usuario {
 	}
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
-	}
-	public Date getNascimento() {
-		return nascimento;
-	}
-	public void setNascimento(Date nascimento) {
-		this.nascimento = nascimento;
 	}
 	public String getEmail() {
 		return email;

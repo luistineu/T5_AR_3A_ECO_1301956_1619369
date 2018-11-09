@@ -8,16 +8,16 @@ public class BCrypt extends java.lang.Object {
 	
 	Usuario user = new Usuario();
 	
-	public static java.lang.String hashpw(java.lang.String password, java.lang.String salt) throws java.lang.IllegalArgumentException{				
+	/*public static java.lang.String hashpw(java.lang.String password, java.lang.String salt) throws java.lang.IllegalArgumentException{				
 		
 		return pwhash;
 	}
 	
-	public static java.lang.String gensalt(int log_rounds, java.security.SecureRandom random){
+	public static java.lang.String gensalt(int log_rounds){
 		
 		return salt;	
-	}
+	}*/
 	
-	String senha_hash = BCrypt.hashpw(pwhash, BCrypt.gensalt(0, null)); 
+	//String senha_hash = BCrypt.hashpw(pwhash, BCrypt.gensalt(0)); 
 
 }
