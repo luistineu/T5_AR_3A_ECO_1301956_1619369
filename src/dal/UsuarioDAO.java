@@ -14,7 +14,7 @@ public class UsuarioDAO {
 	public static boolean CadastrarUsuario(Usuario u) throws SQLException {
 		
 		try {
-			ConnectionFactory.testConnection();
+			//ConnectionFactory.testConnection();
 			
 			String sql = "INSERT INTO usuarios (NOME, SOBRENOME, SEXO, EMAIL, LOGIN, SENHA) VALUES (?,?,?,?,?,?)";
 			PreparedStatement statement = ConnectionFactory.getConnection().prepareStatement(sql);
@@ -23,9 +23,7 @@ public class UsuarioDAO {
 			statement.setString(3, u.getSexo());
 			statement.setString(4, u.getEmail());
 			statement.setString(5, u.getLogin());
-			statement.setString(6, "banana");
-			java.lang.String salt = "aspdokasopd";
-			//System.out.println(BCrypt.hashpw(u.getSenha(), salt));
+			statement.setString(6, BCrypt.hashpw(u.getSenha(), BCrypt.gensalt(10)));
 			statement.execute();
 			
 			return true;
@@ -65,9 +63,52 @@ public class UsuarioDAO {
 		return false;
 	}
 	
-	
-	public static boolean Login(Usuario u) {
+	public static boolean Logar(String senha, String login) {
+		try {
+			
+			if(UsuarioDAO.BuscarUsuario(login) != null) {
+				if (BCrypt.checkpw(senha, UsuarioDAO.BuscarUsuario(login).getSenha())) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			else {
+				return false;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return false;
+	}
+	
+	public static Usuario BuscarUsuario(String login) {
+		try {
+			String sql = "SELECT * FROM usuarios WHERE LOGIN = ?";
+			PreparedStatement statement = ConnectionFactory.getConnection().prepareStatement(sql);
+			statement.setString(1, login);
+			ResultSet rs = statement.executeQuery();
+			
+			if(rs.next()) {
+				Usuario usuario = new Usuario();
+				usuario.setNome(rs.getString("nome"));
+				usuario.setSobrenome(rs.getString("sobrenome"));
+				usuario.setEmail(rs.getString("email"));
+				usuario.setSexo(rs.getString("sexo"));
+				usuario.setSenha(rs.getString("senha"));
+				
+				return usuario;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return null;
 	}
 	
 }

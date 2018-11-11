@@ -1,6 +1,7 @@
 package view;
 
 import java.util.Date;
+import java.io.Console;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -20,10 +21,9 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		
 		while(!op.equals("0")) {
-			System.out.println("SISTEMA DE LOGIN");
+			System.out.println("\n\nSISTEMA DE LOGIN");
 			System.out.println("1 - CADASTRAR USUÁRIO");
 			System.out.println("2 - FAZER LOGIN");
-			System.out.println("3 - TESTAR SENHA");
 			System.out.println("0 - SAIR  ");
 			
 			op = sc.nextLine();
@@ -37,10 +37,6 @@ public class Main {
 					u.setNome(sc.nextLine());
 					System.out.println("Sobrenome:");
 					u.setSobrenome(sc.nextLine());
-					/*System.out.println("Data de Nascimento:");
-					SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-					java.sql.Date data = new java.sql.Date(format.parse(sc.nextLine()).getTime());
-					u.setNascimento(data);*/
 					System.out.println("Sexo:");
 					u.setSexo(sc.nextLine());
 					System.out.println("E-mail:");
@@ -71,26 +67,28 @@ public class Main {
 				case "2":
 					System.out.println("-- LOGIN --");
 					System.out.println("Login:");
-					if(UsuarioDAO.ConsultaLogin(sc.nextLine())) {
-						System.out.println("Senha:");
-					}
-					
-					break;
-					
-				case "3":
-					System.out.println("-- TESTAR SENHA --");
-					java.lang.String senhaParaSalvar;
-					
-					BCrypt b = new BCrypt(10);
-					
-					u = new Usuario();
+					String usuarioLogin = sc.nextLine();
 					System.out.println("Senha:");
-					u.setSenha(sc.nextLine());	
-					
-					senhaParaSalvar = b.hash(u.getSenha());
-					//senhaParaSalvar = BCrypt.hashpw(u.getSenha(), BCrypt.gensalt(10));
-					System.out.println("Senha: "+ senhaParaSalvar);
-					
+					String senha = sc.nextLine();
+					if(UsuarioDAO.Logar(senha, usuarioLogin)) {
+						Usuario uLogado = UsuarioDAO.BuscarUsuario(usuarioLogin);
+						System.out.println("\n--BEM VINDO!--");
+						System.out.println("\n--INFORMAÇÕES DO USUÁRIO--");
+						System.out.println("Nome: " + uLogado.getNome());
+						System.out.println("Sobrenome: " + uLogado.getSobrenome());
+						System.out.println("E-mail: " + uLogado.getEmail());
+						System.out.println("Sexo: " + uLogado.getSexo());
+					}
+					else {
+						System.out.println("Usuário e/ou senha incorretos!");
+					}
+					break;
+				case "0":
+					System.out.println("Saindo...");
+					op = "0";
+					break;
+				default:
+					System.out.println("Opção Inválida!");
 					break;
 			}
 		}
