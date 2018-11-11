@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import dal.UsuarioDAO;
 import model.ConnectionFactory;
 import model.Usuario;
