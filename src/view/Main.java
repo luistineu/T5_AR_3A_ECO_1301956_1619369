@@ -53,7 +53,17 @@ public class Main {
 						}
 					}
 					System.out.println("Senha:");
-					u.setSenha(sc.nextLine());
+					String senha = sc.nextLine();
+					while(u.getSenha() == null) {
+						if(senha.length() >= 6 && senha != "") {
+							u.setSenha(senha);
+						}
+						else {
+							System.out.println("A senha deve conter no mínimo 6 caracteres!");
+							System.out.println("Insira outra a senha:");
+							senha = sc.nextLine();
+						}
+					}
 					
 					if(UsuarioDAO.CadastrarUsuario(u)) {
 						System.out.println("Usuário cadastrado com sucesso!");
@@ -69,8 +79,8 @@ public class Main {
 					System.out.println("Login:");
 					String usuarioLogin = sc.nextLine();
 					System.out.println("Senha:");
-					String senha = sc.nextLine();
-					if(UsuarioDAO.Logar(senha, usuarioLogin)) {
+					String usuarioSenha = sc.nextLine();
+					if(UsuarioDAO.Logar(usuarioSenha, usuarioLogin)) {
 						Usuario uLogado = UsuarioDAO.BuscarUsuario(usuarioLogin);
 						System.out.println("\n--BEM VINDO!--");
 						System.out.println("\n--INFORMAÇÕES DO USUÁRIO--");

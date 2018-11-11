@@ -32,8 +32,6 @@ public class UsuarioDAO {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			ConnectionFactory.getConnection().close();
 		}
 		
 		
@@ -57,9 +55,7 @@ public class UsuarioDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			ConnectionFactory.getConnection().close();
-		}
+		} 
 		
 		
 		return false;
@@ -107,8 +103,6 @@ public class UsuarioDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			ConnectionFactory.getConnection().close();
 		}
 		
 		
