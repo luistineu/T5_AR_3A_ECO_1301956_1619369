@@ -40,7 +40,7 @@ public class UsuarioDAO {
 		return false;
 	}
 	
-	public static boolean ConsultaLogin(String login) {
+	public static boolean ConsultaLogin(String login) throws SQLException {
 		try {
 			String sql = "SELECT * FROM usuarios WHERE LOGIN = ?";
 			PreparedStatement statement = ConnectionFactory.getConnection().prepareStatement(sql);
@@ -57,6 +57,8 @@ public class UsuarioDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionFactory.getConnection().close();
 		}
 		
 		
@@ -85,7 +87,7 @@ public class UsuarioDAO {
 		return false;
 	}
 	
-	public static Usuario BuscarUsuario(String login) {
+	public static Usuario BuscarUsuario(String login) throws SQLException {
 		try {
 			String sql = "SELECT * FROM usuarios WHERE LOGIN = ?";
 			PreparedStatement statement = ConnectionFactory.getConnection().prepareStatement(sql);
@@ -105,6 +107,8 @@ public class UsuarioDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionFactory.getConnection().close();
 		}
 		
 		
