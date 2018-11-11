@@ -22,7 +22,7 @@ public class ConnectionFactory {
 	public static Connection getConnection() {
 		if (INSTANCE == null) {
 			try {
-				INSTANCE = DriverManager.getConnection("jdbc:mysql://localhost/sistema_login", "root", "");
+				INSTANCE = DriverManager.getConnection("jdbc:mysql://localhost/sistema_login", "LUIS_TINEU", "!root");
 			} catch (SQLException e) {
 				throw new RuntimeException(e);// devemos logar esse erro
 			}

@@ -18,5 +18,8 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/LUIS/eclipse-workspace/T5_AR_3A_ECO_1301956_1619369/mysql-connector-java-5.1.47.jar"/>
 	<classpathentry kind="lib" path="C:/Users/LUIS/eclipse-workspace/T5_AR_3A_ECO_1301956_1619369/bcrypt-0.5.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUIS/eclipse-workspace/T5_AR_3A_ECO_1301956_1619369/jbcrypt-0.3m.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUIS/eclipse-workspace/T5_AR_3A_ECO_1301956_1619369/spring-2.5.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUIS/eclipse-workspace/T5_AR_3A_ECO_1301956_1619369/spring-security-crypto-3.1.0.RELEASE.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

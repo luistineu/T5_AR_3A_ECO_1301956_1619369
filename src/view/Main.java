@@ -23,6 +23,7 @@ public class Main {
 			System.out.println("SISTEMA DE LOGIN");
 			System.out.println("1 - CADASTRAR USUÁRIO");
 			System.out.println("2 - FAZER LOGIN");
+			System.out.println("3 - TESTAR SENHA");
 			System.out.println("0 - SAIR  ");
 			
 			op = sc.nextLine();
@@ -31,6 +32,7 @@ public class Main {
 				case "1":
 					System.out.println("-- CADASTRO DE USUÁRIO --");
 					u = new Usuario();
+							
 					System.out.println("Nome:");
 					u.setNome(sc.nextLine());
 					System.out.println("Sobrenome:");
@@ -72,6 +74,22 @@ public class Main {
 					if(UsuarioDAO.ConsultaLogin(sc.nextLine())) {
 						System.out.println("Senha:");
 					}
+					
+					break;
+					
+				case "3":
+					System.out.println("-- TESTAR SENHA --");
+					java.lang.String senhaParaSalvar;
+					
+					BCrypt b = new BCrypt(10);
+					
+					u = new Usuario();
+					System.out.println("Senha:");
+					u.setSenha(sc.nextLine());	
+					
+					senhaParaSalvar = b.hash(u.getSenha());
+					//senhaParaSalvar = BCrypt.hashpw(u.getSenha(), BCrypt.gensalt(10));
+					System.out.println("Senha: "+ senhaParaSalvar);
 					
 					break;
 			}

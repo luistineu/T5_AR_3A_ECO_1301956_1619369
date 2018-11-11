@@ -3,9 +3,11 @@ package dal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import controller.BCrypt;
+//import controller.BCrypt;
 import model.ConnectionFactory;
 import model.Usuario;
+
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 public class UsuarioDAO {
 	
